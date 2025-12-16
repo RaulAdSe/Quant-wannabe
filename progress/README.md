@@ -13,10 +13,10 @@ This folder documents the progress through each phase of the Iqana Quant Challen
 | 2 - Feature Engineering | Done | 3.16 (τ=0.6) | 51% | Glassnode + technicals |
 | 3 - Horizon Optimization | Done | 3.05 (8p best) | 49% | 1-day horizon optimal |
 | 4 - Model Comparison | Done | 3.26 | 52% | Random Forest wins |
-| 5 - Regime Detection | **Done** | **6.46** | **70%** | **HMM regime filter (+140%)** |
-| 6 - Robustness | Pending | - | - | - |
+| 5 - Regime Detection | Done | 6.46 | 70% | HMM regime filter (+140%) |
+| 6 - Robustness | **Done** | **6.46** | **70%** | **67% win rate, -69% drawdown** |
 
-**Best Result So Far:** Phase 5 with Sharpe 6.46 AND 70% return (RF + avoid Bear regime)
+**Final Result:** Sharpe 6.46, Return 70%, Max Drawdown -9.7% (vs -31.4% baseline)
 
 ---
 
@@ -47,9 +47,10 @@ This folder documents the progress through each phase of the Iqana Quant Challen
    - Regime-conditional trading (+140% Sharpe!)
    - Key finding: Avoid trading in Bear regimes
 
-6. **PHASE_6_robustness.md** *(Coming Soon)*
-   - Failure analysis
-   - Final evaluation
+6. **[PHASE_6_robustness.md](PHASE_6_robustness.md)**
+   - Walk-forward validation (67% win rate)
+   - Drawdown reduced by 69%
+   - Final recommendations
 
 ---
 
@@ -125,4 +126,5 @@ jupyter lab
 # 3. 03_enhanced_features.ipynb
 # 4. 04_model_optimization.ipynb
 # 5. 05_regime_detection.ipynb
+# 6. 06_robustness_analysis.ipynb
 ```
