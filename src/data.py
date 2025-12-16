@@ -4,7 +4,7 @@ Data loading and preprocessing utilities.
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from typing import Tuple, Optional
+from typing import Tuple
 
 # Project paths
 PROJECT_ROOT = Path(__file__).parent.parent
