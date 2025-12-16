@@ -12,11 +12,11 @@ This folder documents the progress through each phase of the Iqana Quant Challen
 | 1 - Naive Model | Done | 3.93 (τ=0.6) | 12% | Working ML pipeline |
 | 2 - Feature Engineering | Done | 3.16 (τ=0.6) | 51% | Glassnode + technicals |
 | 3 - Horizon Optimization | Done | 3.05 (8p best) | 49% | 1-day horizon optimal |
-| 4 - Model Comparison | **Done** | **3.26** | **52%** | **Random Forest wins** |
-| 5 - Regime Detection | Pending | - | - | - |
+| 4 - Model Comparison | Done | 3.26 | 52% | Random Forest wins |
+| 5 - Regime Detection | **Done** | **6.46** | **70%** | **HMM regime filter (+140%)** |
 | 6 - Robustness | Pending | - | - | - |
 
-**Best Result So Far:** Phase 4 with Sharpe 3.26 AND 52% return (Random Forest, 8p horizon)
+**Best Result So Far:** Phase 5 with Sharpe 6.46 AND 70% return (RF + avoid Bear regime)
 
 ---
 
@@ -42,9 +42,10 @@ This folder documents the progress through each phase of the Iqana Quant Challen
    - Model comparison (LogReg, RF, GB)
    - Random Forest achieves best balance
 
-5. **PHASE_5_regimes.md** *(Coming Soon)*
-   - Hidden Markov Models
-   - Regime detection
+5. **[PHASE_5_regime_detection.md](PHASE_5_regime_detection.md)**
+   - Hidden Markov Models for regime detection
+   - Regime-conditional trading (+140% Sharpe!)
+   - Key finding: Avoid trading in Bear regimes
 
 6. **PHASE_6_robustness.md** *(Coming Soon)*
    - Failure analysis
@@ -78,9 +79,10 @@ This folder documents the progress through each phase of the Iqana Quant Challen
 |-------|-------|--------|--------|-----------|
 | Phase 1 (τ=0.6) | LogReg | 3.93 | 11.71% | High Sharpe, low return |
 | Phase 2 (τ=0.6) | LogReg | 3.16 | 50.88% | Better balance |
-| **Phase 4 (τ=0.5)** | **Random Forest** | **3.26** | **52.1%** | **Best overall** |
+| Phase 4 (τ=0.5) | Random Forest | 3.26 | 52.1% | Good balance |
+| **Phase 5** | **RF + Regime Filter** | **6.46** | **70.0%** | **Best overall** |
 
-**Key Insight:** Random Forest with on-chain features achieves +21.4% Sharpe improvement vs baseline while INCREASING returns.
+**Key Insight:** Regime-conditional trading (avoiding Bear markets) achieves +140.8% Sharpe improvement. Knowing WHEN NOT to trade is as important as knowing when to trade.
 
 ---
 
@@ -95,6 +97,8 @@ This folder documents the progress through each phase of the Iqana Quant Challen
 | Daily vs 3-hourly data | 2 | Forward-fill Glassnode values |
 | XGBoost libomp missing | 3&4 | Used GradientBoostingClassifier |
 | GB underperformance | 3&4 | Selected Random Forest instead |
+| Regime TZ mismatch | 5 | Localize HMM output to naive |
+| Regime as feature hurts | 5 | Use as filter instead |
 
 ---
 
@@ -120,4 +124,5 @@ jupyter lab
 # 2. 02_naive_model.ipynb
 # 3. 03_enhanced_features.ipynb
 # 4. 04_model_optimization.ipynb
+# 5. 05_regime_detection.ipynb
 ```
