@@ -10,13 +10,13 @@ This folder documents the progress through each phase of the Iqana Quant Challen
 |-------|--------|--------|--------|-----------------|
 | 0 - Data Exploration | Done | 2.39 (baseline) | 38% | Data aligned, baseline evaluated |
 | 1 - Naive Model | Done | 3.93 (τ=0.6) | 12% | Working ML pipeline |
-| 2 - Feature Engineering | **Done** | **3.16** (τ=0.6) | **51%** | **Glassnode + technicals** |
-| 3 - Labels & Costs | Pending | - | - | - |
-| 4 - Better Models | Pending | - | - | - |
+| 2 - Feature Engineering | Done | 3.16 (τ=0.6) | 51% | Glassnode + technicals |
+| 3 - Horizon Optimization | Done | 3.05 (8p best) | 49% | 1-day horizon optimal |
+| 4 - Model Comparison | **Done** | **3.26** | **52%** | **Random Forest wins** |
 | 5 - Regime Detection | Pending | - | - | - |
 | 6 - Robustness | Pending | - | - | - |
 
-**Best Result So Far:** Phase 2 with Sharpe 3.16 AND 51% return (best risk-adjusted returns)
+**Best Result So Far:** Phase 4 with Sharpe 3.26 AND 52% return (Random Forest, 8p horizon)
 
 ---
 
@@ -37,19 +37,16 @@ This folder documents the progress through each phase of the Iqana Quant Challen
    - Technical indicators (RSI, Bollinger Bands)
    - +17.5% Sharpe improvement with +24% more return
 
-4. **PHASE_3_labels.md** *(Coming Soon)*
-   - Horizon optimization
-   - Cost-adjusted labels
+4. **[PHASE_3_4_optimization.md](PHASE_3_4_optimization.md)**
+   - Horizon optimization (1d, 2d, 3d, 1w)
+   - Model comparison (LogReg, RF, GB)
+   - Random Forest achieves best balance
 
-5. **PHASE_4_models.md** *(Coming Soon)*
-   - XGBoost, Random Forest
-   - Model comparison
-
-6. **PHASE_5_regimes.md** *(Coming Soon)*
+5. **PHASE_5_regimes.md** *(Coming Soon)*
    - Hidden Markov Models
    - Regime detection
 
-7. **PHASE_6_robustness.md** *(Coming Soon)*
+6. **PHASE_6_robustness.md** *(Coming Soon)*
    - Failure analysis
    - Final evaluation
 
@@ -77,12 +74,13 @@ This folder documents the progress through each phase of the Iqana Quant Challen
 
 ### Best ML-Filtered Performance
 
-| Phase | Sharpe | Return | Trade-off |
-|-------|--------|--------|-----------|
-| Phase 1 (τ=0.6) | 3.93 | 11.71% | High Sharpe, low return |
-| **Phase 2 (τ=0.6)** | **3.16** | **50.88%** | **Best balance** |
+| Phase | Model | Sharpe | Return | Trade-off |
+|-------|-------|--------|--------|-----------|
+| Phase 1 (τ=0.6) | LogReg | 3.93 | 11.71% | High Sharpe, low return |
+| Phase 2 (τ=0.6) | LogReg | 3.16 | 50.88% | Better balance |
+| **Phase 4 (τ=0.5)** | **Random Forest** | **3.26** | **52.1%** | **Best overall** |
 
-**Phase 2 Insight:** Adding Glassnode features enables the model to identify GOOD trades to keep, not just filter conservatively.
+**Key Insight:** Random Forest with on-chain features achieves +21.4% Sharpe improvement vs baseline while INCREASING returns.
 
 ---
 
@@ -95,6 +93,8 @@ This folder documents the progress through each phase of the Iqana Quant Challen
 | NaN in feature stacking | 1 | Asset-agnostic column names |
 | Timezone mismatch | 2 | Localize to naive timestamps |
 | Daily vs 3-hourly data | 2 | Forward-fill Glassnode values |
+| XGBoost libomp missing | 3&4 | Used GradientBoostingClassifier |
+| GB underperformance | 3&4 | Selected Random Forest instead |
 
 ---
 
@@ -119,4 +119,5 @@ jupyter lab
 # 1. 01_data_exploration.ipynb
 # 2. 02_naive_model.ipynb
 # 3. 03_enhanced_features.ipynb
+# 4. 04_model_optimization.ipynb
 ```
